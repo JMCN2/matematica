@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplicación · Casos especiales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif;
+            background: linear-gradient(145deg, #fdf2f2 0%, #fce9e9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .page {
+            max-width: 1100px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            border: 4px solid #8e44ad;
+        }
+
+        .header {
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #8e44ad, #6c3483);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #bb8fce;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 0 #4a235a, 5px 5px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .header h1 i {
+            font-size: 2.4rem;
+            margin-right: 0.5rem;
+            color: #f1c40f;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: #fff;
+            transform: scale(1.05);
+        }
+
+        .nav-links a i {
+            color: #f1c40f;
+        }
+
+        .content {
+            padding: 2.5rem 2.8rem 2rem;
+        }
+
+        .content h2 {
+            font-size: 2.2rem;
+            color: #4a235a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .content h2 i {
+            color: #f1c40f;
+            font-size: 2rem;
+        }
+
+        .content .subtitle {
+            font-size: 1.1rem;
+            color: #7d6b8a;
+            margin-bottom: 2rem;
+            border-left: 6px solid #8e44ad;
+            padding-left: 1.2rem;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+
+        .case-card {
+            background: #faf5fc;
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 1.5rem;
+            border: 3px solid #d7bde2;
+            transition: 0.25s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+            border-color: #8e44ad;
+        }
+
+        .case-card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+
+        .case-card h3 {
+            font-size: 1.5rem;
+            color: #4a235a;
+            margin-bottom: 0.3rem;
+        }
+
+        .case-card h3 i {
+            color: #f1c40f;
+            margin-right: 0.3rem;
+        }
+
+        .case-card .formula {
+            background: #fef9e7;
+            padding: 0.4rem 1rem;
+            border-radius: 16px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #c0392b;
+            margin: 0.4rem 0 0.6rem;
+            border: 2px dashed #f39c12;
+        }
+
+        .case-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c3e50;
+        }
+
+        .case-card .example {
+            background: #e8daef;
+            border-radius: 16px;
+            padding: 0.6rem 1rem;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #4a235a;
+            border-left: 6px solid #8e44ad;
+        }
+
+        .case-card .example strong {
+            color: #c0392b;
+        }
+
+        .divider {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, #8e44ad, #bb8fce, #8e44ad);
+            margin: 2rem 0 1.5rem;
+            border-radius: 4px;
+        }
+
+
+        .integrantes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 30px;
+            flex: 1;
+        }
+
+        .integrantes span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .footer {
+            padding: 1rem 2.5rem;
+            background: #f8f4ec;
+            border-top: 3px solid #fbd24d;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer .integrantes {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer .integrantes span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+            background: #fff;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border: 2px solid #bb8fce;
+        }
+
+        .footer .integrantes span i {
+            color: #8e44ad;
+        }
+
+        .footer .copy {
+            color: #7d6b8a;
+            font-size: 0.9rem;
+            background: #fff;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 2px solid #bb8fce;
+        }
+
+        @media (max-width: 750px) {
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1><i class="fas fa-times"></i> MULTIPLICACIÓN</h1>
+            <div class="nav-links">
+                <a href="matematica.css"><i class="fas fa-home"></i> Inicio</a>
+                <a href="propiedades.html"><i class="fas fa-cogs"></i> Propiedades</a>
+                <a href="resolucion.html"><i class="fas fa-puzzle-piece"></i> Resolución</a>
+                <a href="#" class="active"><i class="fas fa-star"></i> Casos</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2><i class="fas fa-star"></i> Casos especiales</h2>
+            <div class="subtitle">
+                <i class="fas fa-magic" style="color:#f1c40f;"></i> ¡Estos casos te sorprenderán!
+            </div>
+
+            <div class="cases-grid">
+                <!-- Multiplicar por 0 -->
+                <div class="case-card">
+                    <span class="icon">0️⃣</span>
+                    <h3><i class="fas fa-times"></i> Multiplicar por 0</h3>
+                    <div class="formula">a × 0 = 0</div>
+                    <p>Cualquier número multiplicado por <strong>cero</strong> da <strong>cero</strong>. ¡El cero es el <strong>absorbente</strong>!</p>
+                    <div class="example">
+                        <strong>Ejemplos:</strong> 5 × 0 = <strong>0</strong> &nbsp;|&nbsp; 100 × 0 = <strong>0</strong> &nbsp;|&nbsp; 0 × 7 = <strong>0</strong>
+                    </div>
+                </div>
+
+                <!-- Multiplicar por 1 -->
+                <div class="case-card">
+                    <span class="icon">1️⃣</span>
+                    <h3><i class="fas fa-id-card"></i> Multiplicar por 1</h3>
+                    <div class="formula">a × 1 = a</div>
+                    <p>Cualquier número multiplicado por <strong>1</strong> da el mismo número. ¡El 1 es el <strong>neutro</strong>!</p>
+                    <div class="example">
+                        <strong>Ejemplos:</strong> 8 × 1 = <strong>8</strong> &nbsp;|&nbsp; 25 × 1 = <strong>25</strong>
+                    </div>
+                </div>
+
+                <!-- Multiplicar por 10 -->
+                <div class="case-card">
+                    <span class="icon">🔟</span>
+                    <h3><i class="fas fa-arrow-up"></i> Multiplicar por 10</h3>
+                    <div class="formula">a × 10 = a0</div>
+                    <p>Solo tienes que agregar un <strong>cero</strong> al final del número. ¡Es muy fácil!</p>
+                    <div class="example">
+                        <strong>Ejemplos:</strong> 4 × 10 = <strong>40</strong> &nbsp;|&nbsp; 7 × 10 = <strong>70</strong> &nbsp;|&nbsp; 12 × 10 = <strong>120</strong>
+                    </div>
+                </div>
+
+                <!-- Multiplicar por 100 -->
+                <div class="case-card">
+                    <span class="icon">💯</span>
+                    <h3><i class="fas fa-arrow-up"></i> Multiplicar por 100</h3>
+                    <div class="formula">a × 100 = a00</div>
+                    <p>Agrega <strong>dos ceros</strong> al final del número. ¡Así de simple!</p>
+                    <div class="example">
+                        <strong>Ejemplos:</strong> 6 × 100 = <strong>600</strong> &nbsp;|&nbsp; 3 × 100 = <strong>300</strong>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div style="background:#fef9e7; border-radius:28px; padding:1.5rem 2rem; border:3px solid #f1c40f; text-align:center;">
+                <h3 style="color:#4a235a; font-size:1.6rem; margin-bottom:0.5rem;">
+                    <i class="fas fa-trophy" style="color:#f1c40f;"></i> ¡Reto rápido!
+                </h3>
+                <p style="font-size:1.2rem; color:#2c3e50;">
+                    Resuelve estas multiplicaciones especiales:
+                </p>
+                <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-top:0.8rem; font-size:1.3rem; font-weight:700; color:#1a5e3a;">
+                    <span>7 × 0 = <span style="color:#c0392b;">?</span></span>
+                    <span>9 × 1 = <span style="color:#c0392b;">?</span></span>
+                    <span>6 × 10 = <span style="color:#c0392b;">?</span></span>
+                    <span>4 × 100 = <span style="color:#c0392b;">?</span></span>
+                </div>
+                <div style="margin-top:0.8rem; font-size:0.9rem; color:#7d6b8a;">
+                    <i class="fas fa-lightbulb" style="color:#f1c40f;"></i> Respuestas: 0, 9, 60, 400
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; margin-top:1.8rem;">
+                <a href="matematicas.html" style="background:#f39c12; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #e67e22;">
+                    <i class="fas fa-home"></i> Volver al inicio
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="integrantes">
+                <span><i class="fas fa-user-astronaut"></i> César Joel Contreras Jerez</span>
+                <span><i class="fas fa-user-ninja"></i> Liz Pamela Maraz Romero</span>
+                <span><i class="fas fa-user-graduate"></i> Brayan Nicolás Ribera Flores</span>
+                <span><i class="fas fa-user-tie"></i> Juan Manuel Choque Nolasco</span>
+            </div>
+            <div class="copy">
+                <i class="fas fa-times"></i> 4 integrantes
+            </div>
+        </div>
+    </div>
+</body>
+</html>

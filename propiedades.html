@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplicación · Propiedades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif;
+            background: linear-gradient(145deg, #f0f7ff 0%, #e8f0fe 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .page {
+            max-width: 1100px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            border: 4px solid #3498db;
+        }
+
+        .header {
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #85c1e9;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 0 #1a5276, 5px 5px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .header h1 i {
+            font-size: 2.4rem;
+            margin-right: 0.5rem;
+            color: #f1c40f;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: #fff;
+            transform: scale(1.05);
+        }
+
+        .nav-links a i {
+            color: #f1c40f;
+        }
+
+        .content {
+            padding: 2.5rem 2.8rem 2rem;
+        }
+
+        .content h2 {
+            font-size: 2.2rem;
+            color: #1a5276;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .content h2 i {
+            color: #f1c40f;
+            font-size: 2rem;
+        }
+
+        .content .subtitle {
+            font-size: 1.1rem;
+            color: #5d6d7e;
+            margin-bottom: 2rem;
+            border-left: 6px solid #3498db;
+            padding-left: 1.2rem;
+        }
+
+        .props-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+
+        .prop-card {
+            background: #f8faff;
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 1.5rem;
+            border: 3px solid #d6eaf8;
+            transition: 0.25s;
+        }
+
+        .prop-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+            border-color: #85c1e9;
+        }
+
+        .prop-card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .prop-card h3 {
+            font-size: 1.5rem;
+            color: #1a5276;
+            margin-bottom: 0.3rem;
+        }
+
+        .prop-card h3 i {
+            color: #f1c40f;
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+        }
+
+        .prop-card .formula {
+            background: #fef9e7;
+            padding: 0.4rem 1rem;
+            border-radius: 16px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #c0392b;
+            margin: 0.4rem 0 0.6rem;
+            border: 2px dashed #f39c12;
+        }
+
+        .prop-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c3e50;
+        }
+
+        .prop-card .example {
+            background: #eaf2f8;
+            border-radius: 16px;
+            padding: 0.6rem 1rem;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #1a5276;
+            border-left: 6px solid #3498db;
+        }
+
+        .prop-card .example strong {
+            color: #c0392b;
+        }
+
+        .divider {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #85c1e9, #3498db);
+            margin: 2rem 0 1.5rem;
+            border-radius: 4px;
+        }
+
+        
+        .integrantes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 30px;
+            flex: 1;
+        }
+
+        .integrantes span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .footer {
+            padding: 1rem 2.5rem;
+            background: #f8f4ec;
+            border-top: 3px solid #fbd24d;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer .integrantes {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer .integrantes span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+            background: #fff;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border: 2px solid #85c1e9;
+        }
+
+        .footer .integrantes span i {
+            color: #3498db;
+        }
+
+        .footer .copy {
+            color: #5d6d7e;
+            font-size: 0.9rem;
+            background: #fff;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 2px solid #85c1e9;
+        }
+
+        @media (max-width: 750px) {
+            .props-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1><i class="fas fa-times"></i> MULTIPLICACIÓN</h1>
+            <div class="nav-links">
+                <a href="matematicas.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="#" class="active"><i class="fas fa-cogs"></i> Propiedades</a>
+                <a href="resolucion.html"><i class="fas fa-puzzle-piece"></i> Resolución</a>
+                <a href="casos.html"><i class="fas fa-star"></i> Casos</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2><i class="fas fa-cogs"></i> Propiedades de la multiplicación</h2>
+            <div class="subtitle">
+                <i class="fas fa-lightbulb" style="color:#f1c40f;"></i> Estas reglas te ayudarán a multiplicar más rápido
+            </div>
+
+            <div class="props-grid">
+                <!-- Conmutativa -->
+                <div class="prop-card">
+                    <span class="icon">🔄</span>
+                    <h3><i class="fas fa-arrows-alt-h"></i> Conmutativa</h3>
+                    <div class="formula">a × b = b × a</div>
+                    <p>El orden de los factores <strong>no altera el producto</strong>. Puedes cambiar el orden y el resultado será el mismo.</p>
+                    <div class="example">
+                        <strong>Ejemplo:</strong> 4 × 3 = <strong>12</strong> y 3 × 4 = <strong>12</strong>
+                    </div>
+                </div>
+
+                <!-- Asociativa -->
+                <div class="prop-card">
+                    <span class="icon">🔗</span>
+                    <h3><i class="fas fa-link"></i> Asociativa</h3>
+                    <div class="formula">(a × b) × c = a × (b × c)</div>
+                    <p>La forma en que <strong>agrupamos</strong> los factores no cambia el producto.</p>
+                    <div class="example">
+                        <strong>Ejemplo:</strong> (2 × 3) × 4 = <strong>24</strong> y 2 × (3 × 4) = <strong>24</strong>
+                    </div>
+                </div>
+
+                <!-- Distributiva -->
+                <div class="prop-card">
+                    <span class="icon">📦</span>
+                    <h3><i class="fas fa-boxes"></i> Distributiva</h3>
+                    <div class="formula">a × (b + c) = (a × b) + (a × c)</div>
+                    <p>La multiplicación se <strong>distribuye</strong> sobre la suma. Multiplicas el número por cada sumando y luego sumas.</p>
+                    <div class="example">
+                        <strong>Ejemplo:</strong> 3 × (2 + 4) = 3 × 6 = <strong>18</strong> <br>
+                        (3 × 2) + (3 × 4) = 6 + 12 = <strong>18</strong>
+                    </div>
+                </div>
+
+                <!-- Neutro -->
+                <div class="prop-card">
+                    <span class="icon">🆔</span>
+                    <h3><i class="fas fa-id-card"></i> Elemento neutro</h3>
+                    <div class="formula">a × 1 = a</div>
+                    <p>Cualquier número multiplicado por <strong>1</strong> da el mismo número. ¡El 1 es el <strong>neutro</strong> de la multiplicación!</p>
+                    <div class="example">
+                        <strong>Ejemplo:</strong> 7 × 1 = <strong>7</strong> &nbsp;|&nbsp; 100 × 1 = <strong>100</strong>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
+                <a href="resolucion.html" style="background:#27ae60; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #1e8449;">
+                    <i class="fas fa-puzzle-piece"></i> Ir a resolución
+                </a>
+                <a href="casos.html" style="background:#8e44ad; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #6c3483;">
+                    <i class="fas fa-star"></i> Casos especiales
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="integrantes">
+                <span><i class="fas fa-user-astronaut"></i> César Joel Contreras Jerez</span>
+                <span><i class="fas fa-user-ninja"></i> Liz Pamela Maraz Romero</span>
+                <span><i class="fas fa-user-graduate"></i> Brayan Nicolás Ribera Flores</span>
+                <span><i class="fas fa-user-tie"></i> Juan Manuel Choque Nolasco</span>
+            </div>
+            <div class="copy">
+                <i class="fas fa-times"></i> 4 integrantes
+            </div>
+        </div>
+    </div>
+</body>
+</html>

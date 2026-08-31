@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplicación · Resolución</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif;
+            background: linear-gradient(145deg, #f0fff4 0%, #e0f7e9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .page {
+            max-width: 1100px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            border: 4px solid #27ae60;
+        }
+
+        .header {
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #27ae60, #1e8449);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #82e0aa;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 0 #1a5e3a, 5px 5px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .header h1 i {
+            font-size: 2.4rem;
+            margin-right: 0.5rem;
+            color: #f1c40f;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: #fff;
+            transform: scale(1.05);
+        }
+
+        .nav-links a i {
+            color: #f1c40f;
+        }
+
+        .content {
+            padding: 2.5rem 2.8rem 2rem;
+        }
+
+        .content h2 {
+            font-size: 2.2rem;
+            color: #1a5e3a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .content h2 i {
+            color: #f1c40f;
+            font-size: 2rem;
+        }
+
+        .content .subtitle {
+            font-size: 1.1rem;
+            color: #5d7a6e;
+            margin-bottom: 2rem;
+            border-left: 6px solid #27ae60;
+            padding-left: 1.2rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+
+        .step-card {
+            background: #f8fff9;
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 1.5rem;
+            border: 3px solid #a9dfbf;
+            transition: 0.25s;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+            border-color: #27ae60;
+        }
+
+        .step-card .step-number {
+            position: absolute;
+            top: -14px;
+            right: 20px;
+            background: #f1c40f;
+            color: #1a5e3a;
+            font-weight: 900;
+            font-size: 1.2rem;
+            padding: 0.1rem 1.2rem;
+            border-radius: 40px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .step-card .icon {
+            font-size: 2.6rem;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .step-card h3 {
+            font-size: 1.4rem;
+            color: #1a5e3a;
+            margin-bottom: 0.4rem;
+        }
+
+        .step-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c3e50;
+        }
+
+        .step-card .example-box {
+            background: #fef9e7;
+            border-radius: 16px;
+            padding: 0.8rem 1.2rem;
+            margin-top: 0.8rem;
+            border-left: 6px solid #f1c40f;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .step-card .example-box .big {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #c0392b;
+        }
+
+        .step-card .example-box .highlight {
+            background: #f1c40f;
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .divider {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, #27ae60, #82e0aa, #27ae60);
+            margin: 2rem 0 1.5rem;
+            border-radius: 4px;
+        }
+
+        
+        .integrantes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 30px;
+            flex: 1;
+        }
+
+        .integrantes span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .footer {
+            padding: 1rem 2.5rem;
+            background: #f8f4ec;
+            border-top: 3px solid #fbd24d;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer .integrantes {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer .integrantes span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+            background: #fff;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border: 2px solid #82e0aa;
+        }
+
+        .footer .integrantes span i {
+            color: #27ae60;
+        }
+
+        .footer .copy {
+            color: #5d7a6e;
+            font-size: 0.9rem;
+            background: #fff;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 2px solid #82e0aa;
+        }
+
+        @media (max-width: 750px) {
+            .steps {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1><i class="fas fa-times"></i> MULTIPLICACIÓN</h1>
+            <div class="nav-links">
+                <a href="matematicas.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="propiedades.html"><i class="fas fa-cogs"></i> Propiedades</a>
+                <a href="#" class="active"><i class="fas fa-puzzle-piece"></i> Resolución</a>
+                <a href="casos.html"><i class="fas fa-star"></i> Casos</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2><i class="fas fa-puzzle-piece"></i> ¡Aprendamos a multiplicar!</h2>
+            <div class="subtitle">
+                <i class="fas fa-child" style="color:#f1c40f;"></i> Sigue estos pasos para resolver multiplicaciones como un experto
+            </div>
+
+            <div class="steps">
+                <!-- Paso 1 -->
+                <div class="step-card">
+                    <span class="step-number">Paso 1</span>
+                    <span class="icon">👀</span>
+                    <h3>Lee el problema</h3>
+                    <p>Identifica los números que tienes que multiplicar. Pregúntate: <strong>¿qué números están en la multiplicación?</strong></p>
+                    <div class="example-box">
+                        <span class="big">3</span> × <span class="big">4</span>
+                        <br>
+                        <span style="font-size:0.9rem; color:#5d7a6e;">→ Tengo el 3 y el 4</span>
+                    </div>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="step-card">
+                    <span class="step-number">Paso 2</span>
+                    <span class="icon">➕</span>
+                    <h3>Suma repetida</h3>
+                    <p>Recuerda que multiplicar es sumar el primer número tantas veces como indica el segundo.</p>
+                    <div class="example-box">
+                        <span class="big">3</span> + <span class="big">3</span> + <span class="big">3</span> + <span class="big">3</span> = ?
+                        <br>
+                        <span style="font-size:0.9rem; color:#5d7a6e;">→ Sumamos 3 cuatro veces</span>
+                    </div>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="step-card">
+                    <span class="step-number">Paso 3</span>
+                    <span class="icon">🧮</span>
+                    <h3>Agrupa y cuenta</h3>
+                    <p>Puedes usar tus dedos, dibujar puntos o usar una tabla para ayudarte a contar.</p>
+                    <div class="example-box">
+                        ⚫⚫⚫ ⚫⚫⚫ ⚫⚫⚫ ⚫⚫⚫
+                        <br>
+                        <span style="font-size:0.9rem; color:#5d7a6e;">→ 3 grupos de 4 = 12</span>
+                    </div>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="step-card">
+                    <span class="step-number">Paso 4</span>
+                    <span class="icon">🎯</span>
+                    <h3>¡Encuentra el resultado!</h3>
+                    <p>Suma todo y obtendrás el producto. ¡Felicidades, ya resolviste una multiplicación!</p>
+                    <div class="example-box" style="background:#d5f5e3; border-left-color:#27ae60;">
+                        <span class="big" style="color:#1a5e3a;">3 × 4 = 12</span>
+                        <br>
+                        <span style="font-size:1.2rem;">✅ ¡Respuesta correcta!</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Tabla de multiplicar interactiva simple -->
+            <div style="background:#fef9e7; border-radius:28px; padding:1.5rem 2rem; border:3px solid #f1c40f; margin-top:0.5rem;">
+                <h3 style="display:flex; align-items:center; gap:0.6rem; color:#1a5e3a; font-size:1.5rem; margin-bottom:1rem;">
+                    <i class="fas fa-table"></i> Tabla del 1 al 5
+                </h3>
+                <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:0.8rem; text-align:center;">
+                    <div><strong>×1</strong><br>1,2,3,4,5</div>
+                    <div><strong>×2</strong><br>2,4,6,8,10</div>
+                    <div><strong>×3</strong><br>3,6,9,12,15</div>
+                    <div><strong>×4</strong><br>4,8,12,16,20</div>
+                    <div><strong>×5</strong><br>5,10,15,20,25</div>
+                </div>
+                <p style="margin-top:1rem; color:#5d7a6e; font-size:0.95rem;">
+                    <i class="fas fa-lightbulb" style="color:#f1c40f;"></i> ¡Practica con estos números! Intenta resolver: 3 × 5, 4 × 2, 5 × 3
+                </p>
+            </div>
+
+            <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; margin-top:1.8rem;">
+                <a href="casos.html" style="background:#8e44ad; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #6c3483;">
+                    <i class="fas fa-star"></i> Casos especiales
+                </a>
+                <a href="resolucion.html" style="background:#27ae60; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #1e8449;">
+                    <i class="fas fa-puzzle-piece"></i> Mostrar más...
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="integrantes">
+                <span><i class="fas fa-user-astronaut"></i> César Joel Contreras Jerez</span>
+                <span><i class="fas fa-user-ninja"></i> Liz Pamela Maraz Romero</span>
+                <span><i class="fas fa-user-graduate"></i> Brayan Nicolás Ribera Flores</span>
+                <span><i class="fas fa-user-tie"></i> Juan Manuel Choque Nolasco</span>
+            </div>
+            <div class="copy">
+                <i class="fas fa-times"></i> 4 integrantes
+            </div>
+        </div>
+    </div>
+</body>
+</html>

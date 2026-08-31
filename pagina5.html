@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplicación · Resolución</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif;
+            background: linear-gradient(145deg, #f0fff4 0%, #e0f7e9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .page {
+            max-width: 1200px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            border: 4px solid #27ae60;
+        }
+
+        .header {
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #27ae60, #1e8449);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #82e0aa;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 0 #1a5e3a, 5px 5px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .header h1 i {
+            font-size: 2.4rem;
+            margin-right: 0.5rem;
+            color: #f1c40f;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: #fff;
+            transform: scale(1.05);
+        }
+
+        .nav-links a i {
+            color: #f1c40f;
+        }
+
+        .content {
+            padding: 2.5rem 2.8rem 2rem;
+        }
+
+        .content h2 {
+            font-size: 2.2rem;
+            color: #1a5e3a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .content h2 i {
+            color: #f1c40f;
+            font-size: 2rem;
+        }
+
+        .content .subtitle {
+            font-size: 1.1rem;
+            color: #5d7a6e;
+            margin-bottom: 2rem;
+            border-left: 6px solid #27ae60;
+            padding-left: 1.2rem;
+        }
+
+        /* TABS para cambiar entre niveles */
+        .tabs {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 3px solid #a9dfbf;
+            background: #f8fff9;
+            color: #1a5e3a;
+            cursor: pointer;
+            transition: 0.25s;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .tab-btn:hover {
+            transform: scale(1.03);
+        }
+
+        .tab-btn.active {
+            background: #27ae60;
+            color: white;
+            border-color: #27ae60;
+        }
+
+        .tab-btn.active i {
+            color: #f1c40f;
+        }
+
+        .tab-btn i {
+            color: #27ae60;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== ESTILOS PARA EJERCICIOS ===== */
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .exercise-card {
+            background: #f8fff9;
+            border-radius: 28px;
+            padding: 1.5rem 1.8rem;
+            border: 3px solid #a9dfbf;
+            transition: 0.25s;
+            position: relative;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+            border-color: #27ae60;
+        }
+
+        .exercise-card .number {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #f1c40f;
+            color: #1a5e3a;
+            font-weight: 900;
+            font-size: 0.9rem;
+            padding: 0.1rem 1rem;
+            border-radius: 40px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .exercise-card .emoji {
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+
+        .exercise-card .question {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a5e3a;
+            margin-bottom: 0.3rem;
+        }
+
+        .exercise-card .question .highlight {
+            color: #c0392b;
+            background: #fef9e7;
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+        }
+
+        .exercise-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #2c3e50;
+        }
+
+        .exercise-card .answer-box {
+            background: #fef9e7;
+            border-radius: 16px;
+            padding: 0.6rem 1.2rem;
+            margin-top: 0.8rem;
+            border-left: 6px solid #f1c40f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .exercise-card .answer-box .label {
+            font-weight: 600;
+            color: #5d7a6e;
+            font-size: 0.9rem;
+        }
+
+        .exercise-card .answer-box .answer {
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: #c0392b;
+            background: white;
+            padding: 0.1rem 1.2rem;
+            border-radius: 30px;
+            border: 2px dashed #f1c40f;
+        }
+
+        .exercise-card .answer-box .answer.hidden {
+            filter: blur(8px);
+            user-select: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .exercise-card .answer-box .answer.hidden:hover {
+            filter: blur(2px);
+        }
+
+        .exercise-card .answer-box .answer.hidden.revealed {
+            filter: blur(0);
+            user-select: auto;
+        }
+
+        .btn-reveal {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-reveal:hover {
+            background: #1e8449;
+            transform: scale(1.05);
+        }
+
+        .divider {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, #27ae60, #82e0aa, #27ae60);
+            margin: 2rem 0 1.5rem;
+            border-radius: 4px;
+        }
+
+        
+        .integrantes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 30px;
+            flex: 1;
+        }
+
+        .integrantes span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .footer {
+            padding: 1rem 2.5rem;
+            background: #f8f4ec;
+            border-top: 3px solid #fbd24d;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer .integrantes {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer .integrantes span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+            background: #fff;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border: 2px solid #82e0aa;
+        }
+
+        .footer .integrantes span i {
+            color: #27ae60;
+        }
+
+        .footer .copy {
+            color: #5d7a6e;
+            font-size: 0.9rem;
+            background: #fff;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 2px solid #82e0aa;
+        }
+
+        @media (max-width: 850px) {
+            .exercise-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 750px) {
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .tabs {
+                flex-direction: column;
+                width: 100%;
+            }
+            .tab-btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1><i class="fas fa-times"></i> MULTIPLICACIÓN</h1>
+            <div class="nav-links">
+                <a href="matematicas.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="propiedades.html"><i class="fas fa-cogs"></i> Propiedades</a>
+                <a href="#" class="active"><i class="fas fa-puzzle-piece"></i> Resolución</a>
+                <a href="casos.html"><i class="fas fa-star"></i> Casos</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2><i class="fas fa-puzzle-piece"></i> ¡Practica multiplicación!</h2>
+            <div class="subtitle">
+                <i class="fas fa-layer-group" style="color:#f1c40f;"></i> Elige tu nivel y resuelve los ejercicios
+            </div>
+
+            <!-- TABS -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="ninos">
+                    <i class="fas fa-child"></i> Nivel Niños
+                </button>
+                <button class="tab-btn" data-tab="jovenes">
+                    <i class="fas fa-user-graduate"></i> Nivel Jóvenes / Adultos
+                </button>
+            </div>
+
+            <!-- ===== TAB 1: NIÑOS ===== -->
+            <div id="tab-ninos" class="tab-content active">
+                <div class="exercise-grid">
+                    <!-- Ejercicio 1 -->
+                    <div class="exercise-card">
+                        <span class="number">1</span>
+                        <span class="emoji">🍎</span>
+                        <div class="question">3 × 4 = <span class="highlight">?</span></div>
+                        <p>Suma 3 cuatro veces o usa la tabla del 3.</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">12</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 2 -->
+                    <div class="exercise-card">
+                        <span class="number">2</span>
+                        <span class="emoji">🐶</span>
+                        <div class="question">5 × 6 = <span class="highlight">?</span></div>
+                        <p>Suma 5 seis veces: 5+5+5+5+5+5</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">30</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 3 -->
+                    <div class="exercise-card">
+                        <span class="number">3</span>
+                        <span class="emoji">🌈</span>
+                        <div class="question">7 × 3 = <span class="highlight">?</span></div>
+                        <p>Recuerda la propiedad conmutativa: 7×3 es igual a 3×7.</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">21</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 4 -->
+                    <div class="exercise-card">
+                        <span class="number">4</span>
+                        <span class="emoji">🚀</span>
+                        <div class="question">8 × 4 = <span class="highlight">?</span></div>
+                        <p>Doble de 8×2 = 16, entonces 8×4 = 16+16</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">32</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 5 -->
+                    <div class="exercise-card">
+                        <span class="number">5</span>
+                        <span class="emoji">🎯</span>
+                        <div class="question">9 × 6 = <span class="highlight">?</span></div>
+                        <p>Usa la tabla del 9 o suma 9 seis veces.</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">54</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== TAB 2: JÓVENES / ADULTOS ===== -->
+            <div id="tab-jovenes" class="tab-content">
+                <div class="exercise-grid">
+                    <!-- Ejercicio 1: Álgebra básica -->
+                    <div class="exercise-card">
+                        <span class="number">1</span>
+                        <span class="emoji">🧮</span>
+                        <div class="question">Resuelve: <span class="highlight">(5 × 7) − (3 × 4)</span></div>
+                        <p>Aplica la jerarquía de operaciones: primero multiplica, luego resta.</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">35 − 12 = 23</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 2: Propiedad distributiva -->
+                    <div class="exercise-card">
+                        <span class="number">2</span>
+                        <span class="emoji">📦</span>
+                        <div class="question">Aplica propiedad distributiva: <span class="highlight">6 × (4 + 3)</span></div>
+                        <p>Multiplica 6 por cada sumando: (6×4) + (6×3)</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">24 + 18 = 42</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 3: Despejar incógnita -->
+                    <div class="exercise-card">
+                        <span class="number">3</span>
+                        <span class="emoji">❓</span>
+                        <div class="question">Encuentra x: <span class="highlight">x × 8 = 56</span></div>
+                        <p>Divide 56 entre 8 para encontrar el valor de x.</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">x = 7</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 4: Multiplicación con paréntesis anidados -->
+                    <div class="exercise-card">
+                        <span class="number">4</span>
+                        <span class="emoji">🧩</span>
+                        <div class="question">Resuelve: <span class="highlight">2 × (3 + 4 × 2)</span></div>
+                        <p>Primero resuelve la multiplicación dentro del paréntesis: 4×2=8, luego suma: 3+8=11, finalmente multiplica: 2×11</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">2 × 11 = 22</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 5: Números negativos -->
+                    <div class="exercise-card">
+                        <span class="number">5</span>
+                        <span class="emoji">⬇️</span>
+                        <div class="question">Multiplica números negativos: <span class="highlight">(−4) × (−6)</span></div>
+                        <p>Recuerda: negativo × negativo = positivo.</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">24</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 6: Multiplicación con decimales -->
+                    <div class="exercise-card">
+                        <span class="number">6</span>
+                        <span class="emoji">💲</span>
+                        <div class="question">Multiplica decimales: <span class="highlight">2.5 × 3.2</span></div>
+                        <p>Multiplica como enteros: 25×32=800, luego cuenta los decimales (2) → 8.00</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">8.0</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 7: Potencias como multiplicación repetida -->
+                    <div class="exercise-card">
+                        <span class="number">7</span>
+                        <span class="emoji">⬆️</span>
+                        <div class="question">Expresa como multiplicación y resuelve: <span class="highlight">3⁴</span></div>
+                        <p>3⁴ = 3 × 3 × 3 × 3</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">81</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 8: Problema de aplicación -->
+                    <div class="exercise-card">
+                        <span class="number">8</span>
+                        <span class="emoji">🏪</span>
+                        <div class="question">Si un pantalón cuesta $25.50 y compras 4, ¿cuánto pagas?</div>
+                        <p>Multiplica el precio por la cantidad: 25.50 × 4</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">$102.00</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 9: Factor común -->
+                    <div class="exercise-card">
+                        <span class="number">9</span>
+                        <span class="emoji">🔢</span>
+                        <div class="question">Factoriza: <span class="highlight">12 × 7 + 12 × 3</span></div>
+                        <p>Extrae el factor común 12: 12 × (7 + 3)</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">12 × 10 = 120</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio 10: Ecuación con multiplicación -->
+                    <div class="exercise-card">
+                        <span class="number">10</span>
+                        <span class="emoji">⚖️</span>
+                        <div class="question">Resuelve: <span class="highlight">3x + 5 = 20</span></div>
+                        <p>Resta 5 a ambos lados: 3x = 15, luego divide entre 3</p>
+                        <div class="answer-box">
+                            <span class="label">Respuesta:</span>
+                            <span class="answer hidden" onclick="this.classList.toggle('revealed')">x = 5</span>
+                            <button class="btn-reveal" onclick="this.previousElementSibling.classList.toggle('revealed')">Mostrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
+                <a href="casos.html" style="background:#8e44ad; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #6c3483;">
+                    <i class="fas fa-star"></i> Casos especiales
+                </a>
+                <a href="matematicas.html" style="background:#f39c12; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #e67e22;">
+                    <i class="fas fa-home"></i> Volver al inicio
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="integrantes">
+                <span><i class="fas fa-user-astronaut"></i> César Joel Contreras Jerez</span>
+                <span><i class="fas fa-user-ninja"></i> Liz Pamela Maraz Romero</span>
+                <span><i class="fas fa-user-graduate"></i> Brayan Nicolás Ribera Flores</span>
+                <span><i class="fas fa-user-tie"></i> Juan Manuel Choque Nolasco</span>
+            </div>
+            <div class="copy">
+                <i class="fas fa-times"></i> 4 integrantes
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cambiar entre pestañas
+        const tabs = document.querySelectorAll('.tab-btn');
+        const contents = {
+            ninos: document.getElementById('tab-ninos'),
+            jovenes: document.getElementById('tab-jovenes')
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Desactivar todos los tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                // Ocultar todos los contenidos
+                Object.values(contents).forEach(c => c.classList.remove('active'));
+
+                // Mostrar el contenido correspondiente
+                const target = this.dataset.tab;
+                if (target === 'ninos') {
+                    contents.ninos.classList.add('active');
+                } else if (target === 'jovenes') {
+                    contents.jovenes.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
