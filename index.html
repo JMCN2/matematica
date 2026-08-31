@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplicación · Inicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif;
+            background: linear-gradient(145deg, #f9f3e6 0%, #f0e6d8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .page {
+            max-width: 1100px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            border: 4px solid #fbd24d;
+        }
+
+        /* HEADER */
+        .header {
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #ffb347, #ff8a5c);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #fbd24d;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 0 #c0392b, 5px 5px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .header h1 i {
+            font-size: 2.4rem;
+            margin-right: 0.5rem;
+            color: #fbd24d;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: #fff;
+            transform: scale(1.05);
+        }
+
+        .nav-links a i {
+            color: #fbd24d;
+        }
+
+        /* CONTENIDO */
+        .content {
+            padding: 2.5rem 2.8rem 2rem;
+        }
+
+        .content h2 {
+            font-size: 2.2rem;
+            color: #c0392b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .content h2 i {
+            color: #f39c12;
+            font-size: 2rem;
+        }
+
+        .content .subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 1.8rem;
+            border-left: 6px solid #f39c12;
+            padding-left: 1.2rem;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #2c3e50;
+        }
+
+        .intro-text .highlight {
+            background: #fef9e7;
+            padding: 0.1rem 0.4rem;
+            border-radius: 8px;
+            font-weight: 700;
+            color: #c0392b;
+            border-bottom: 3px solid #f39c12;
+        }
+
+        .intro-text .emoji-big {
+            font-size: 2.2rem;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .intro-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .card-mini {
+            background: #fef9e7;
+            border-radius: 24px;
+            padding: 1.2rem 1.5rem;
+            border-left: 8px solid #f39c12;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: 0.2s;
+        }
+
+        .card-mini:hover {
+            transform: translateX(6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-mini .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #f39c12;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .card-mini .icon-circle.green {
+            background: #27ae60;
+        }
+        .card-mini .icon-circle.blue {
+            background: #2980b9;
+        }
+        .card-mini .icon-circle.purple {
+            background: #8e44ad;
+        }
+
+        .card-mini h3 {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 0.1rem;
+        }
+
+        .card-mini p {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+        }
+
+        .divider {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, #f39c12, #f1c40f, #f39c12);
+            margin: 1.8rem 0;
+            border-radius: 4px;
+        }
+
+        /* FOOTER */
+
+        .integrantes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 30px;
+            flex: 1;
+        }
+
+        .integrantes span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .footer {
+            padding: 1rem 2.5rem;
+            background: #f8f4ec;
+            border-top: 3px solid #fbd24d;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer .integrantes {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer .integrantes span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+            background: #fff;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border: 2px solid #fbd24d;
+        }
+
+        .footer .integrantes span i {
+            color: #f39c12;
+        }
+
+        .footer .copy {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            background: #fff;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 2px solid #fbd24d;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 750px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <div class="header">
+            <h1><i class="fas fa-times"></i> MULTIPLICACIÓN</h1>
+            <div class="nav-links">
+                <a href="#" class="active"><i class="fas fa-home"></i> Inicio</a>
+                <a href="propiedades.html"><i class="fas fa-cogs"></i> Propiedades</a>
+                <a href="resolucion.html"><i class="fas fa-puzzle-piece"></i> Resolución</a>
+                <a href="casos.html"><i class="fas fa-star"></i> Casos</a>
+            </div>
+        </div>
+
+        <!-- CONTENIDO -->
+        <div class="content">
+            <h2><i class="fas fa-rocket"></i> ¡Bienvenido al mundo de la multiplicación!</h2>
+            <div class="subtitle">
+                <i class="fas fa-child" style="color:#f39c12;"></i> Aprende de forma fácil y divertida
+            </div>
+
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <p>
+                        <span class="emoji-big">🧮</span> La <span class="highlight">multiplicación</span> es una forma rápida de <span class="highlight">sumar</span> el mismo número varias veces.
+                    </p>
+                    <p style="margin-top:0.8rem;">
+                        <span class="emoji-big">🌟</span> Por ejemplo: <span class="highlight">3 × 4</span> significa sumar <span class="highlight">3</span> cuatro veces:
+                        <br>
+                        <span style="background:#fef9e7; padding:0.2rem 1rem; border-radius:20px; display:inline-block; margin-top:0.3rem;">
+                            3 + 3 + 3 + 3 = <strong style="color:#c0392b;">12</strong>
+                        </span>
+                    </p>
+                    <p style="margin-top:0.8rem;">
+                        <span class="emoji-big">🎯</span> La multiplicación nos ayuda a <span class="highlight">contar rápido</span>, a <span class="highlight">repartir</span> y a <span class="highlight">organizar</span> cosas en grupos.
+                    </p>
+                    <div style="background:#eafaf1; border-radius:20px; padding:1rem 1.5rem; margin-top:1.2rem; border:3px dashed #27ae60;">
+                        <span style="font-size:1.5rem;">📌</span> <strong>¿Sabías que?</strong> El símbolo <strong style="color:#c0392b;">×</strong> de la multiplicación fue inventado por el matemático William Oughtred en 1631.
+                    </div>
+                </div>
+
+                <div class="intro-cards">
+                    <div class="card-mini">
+                        <div class="icon-circle"><i class="fas fa-plus"></i></div>
+                        <div>
+                            <h3>Suma repetida</h3>
+                            <p>Multiplicar es sumar varias veces el mismo número</p>
+                        </div>
+                    </div>
+                    <div class="card-mini">
+                        <div class="icon-circle green"><i class="fas fa-arrows-alt-h"></i></div>
+                        <div>
+                            <h3>Filas y columnas</h3>
+                            <p>La multiplicación organiza elementos en grupos</p>
+                        </div>
+                    </div>
+                    <div class="card-mini">
+                        <div class="icon-circle blue"><i class="fas fa-rocket"></i></div>
+                        <div>
+                            <h3>Crece rápido</h3>
+                            <p>La multiplicación hace que los números crezcan más rápido que la suma</p>
+                        </div>
+                    </div>
+                    <div class="card-mini">
+                        <div class="icon-circle purple"><i class="fas fa-smile"></i></div>
+                        <div>
+                            <h3>¡Es divertida!</h3>
+                            <p>Aprender multiplicación es como resolver un juego</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
+                <a href="propiedades.html" style="background:#f39c12; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #e67e22;">
+                    <i class="fas fa-arrow-right"></i> Explorar propiedades
+                </a>
+                <a href="resolucion.html" style="background:#27ae60; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #1e8449;">
+                    <i class="fas fa-puzzle-piece"></i> Practicar resolución
+                </a>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="integrantes">
+                <span><i class="fas fa-user-astronaut"></i> César Joel Contreras Jerez</span>
+                <span><i class="fas fa-user-ninja"></i> Liz Pamela Maraz Romero</span>
+                <span><i class="fas fa-user-graduate"></i> Brayan Nicolás Ribera Flores</span>
+                <span><i class="fas fa-user-tie"></i> Juan Manuel Choque Nolasco</span>
+            </div>
+            <div class="copy">
+                <i class="fas fa-times"></i> 4 integrantes
+            </div>
+        </div>
+    </div>
+</body>
+</html>
