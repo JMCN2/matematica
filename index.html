@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiplicación · Inicio</title>
+    <!-- Font Awesome (iconos) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -209,27 +210,53 @@
             border-radius: 4px;
         }
 
+        /* --- BOTONES-IMAGEN (Google Drive y Documento) centrados --- */
+        .botones-recursos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 1.8rem 0 1.2rem 0;
+        }
+
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            background: #fff;
+            border: 3px solid #fbd24d;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            transition: 0.2s;
+            box-shadow: 0 4px 0 #d4a017;
+            min-width: 160px;
+        }
+
+        .btn-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #d4a017;
+            background: #fef9e7;
+        }
+
+        .btn-icon i {
+            font-size: 2rem;
+        }
+
+        .btn-icon .fa-google-drive {
+            color: #f4b400; /* color Google Drive */
+        }
+
+        .btn-icon .fa-file-pdf {
+            color: #e74c3c; /* rojo documento */
+        }
+
         /* FOOTER */
-
-        .integrantes {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px 30px;
-            flex: 1;
-        }
-
-        .integrantes span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .copy {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
         .footer {
             padding: 1rem 2.5rem;
             background: #f8f4ec;
@@ -238,7 +265,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 30px;
+            gap: 20px 30px;
         }
 
         .footer .integrantes {
@@ -271,6 +298,9 @@
             padding: 0.2rem 1.2rem;
             border-radius: 40px;
             border: 2px solid #fbd24d;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         /* RESPONSIVE */
@@ -292,9 +322,16 @@
             }
             .footer {
                 flex-direction: column;
-                gap: 0.8rem;
                 align-items: flex-start;
                 padding: 1rem 1.5rem;
+            }
+            .botones-recursos {
+                gap: 1rem;
+            }
+            .btn-icon {
+                min-width: 140px;
+                padding: 0.6rem 1.2rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -373,6 +410,21 @@
 
             <hr class="divider">
 
+            <!-- BOTONES RECURSOS: Drive y Documento (centrados) -->
+            <div class="botones-recursos">
+                <a href="#" class="btn-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-google-drive"></i>
+                    <span>Drive</span>
+                </a>
+                <a href="#" class="btn-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Documento</span>
+                </a>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Botones de navegación principales -->
             <div style="display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
                 <a href="propiedades.html" style="background:#f39c12; color:white; padding:0.8rem 2.2rem; border-radius:60px; text-decoration:none; font-weight:700; font-size:1.1rem; display:inline-flex; align-items:center; gap:0.6rem; border:3px solid #e67e22;">
                     <i class="fas fa-arrow-right"></i> Explorar propiedades
