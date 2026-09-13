@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplicación · Recursos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif;
+            background: linear-gradient(145deg, #fff8f0 0%, #ffeede 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .page {
+            max-width: 1250px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            border: 4px solid #e67e22;
+        }
+
+        /* HEADER */
+        .header {
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #f5b041;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 3px 3px 0 #a04000, 5px 5px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .header h1 i {
+            font-size: 2.4rem;
+            margin-right: 0.5rem;
+            color: #f1c40f;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: #fff;
+            transform: scale(1.05);
+        }
+
+        .nav-links a i {
+            color: #f1c40f;
+        }
+
+        /* CONTENIDO */
+        .content {
+            padding: 2.5rem 2.8rem 2rem;
+        }
+
+        .content h2 {
+            font-size: 2rem;
+            color: #a04000;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .content h2 i {
+            color: #f1c40f;
+            font-size: 1.8rem;
+        }
+
+        .content .subtitle {
+            font-size: 1.05rem;
+            color: #8a6d5c;
+            margin-bottom: 2rem;
+            border-left: 6px solid #e67e22;
+            padding-left: 1.2rem;
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border: 3px solid #f5b041;
+            background: #fff8f0;
+            color: #a04000;
+            cursor: pointer;
+            transition: 0.25s;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .tab-btn:hover {
+            transform: scale(1.03);
+        }
+
+        .tab-btn.active {
+            background: #e67e22;
+            color: white;
+            border-color: #e67e22;
+        }
+
+        .tab-btn.active i {
+            color: #f1c40f;
+        }
+
+        .tab-btn i {
+            color: #e67e22;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== VISOR DE DOCUMENTOS ===== */
+        .file-explorer {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+            min-height: 520px;
+        }
+
+        .file-list {
+            background: #fff8f0;
+            border-radius: 24px;
+            padding: 1.2rem;
+            border: 3px solid #f5b041;
+            overflow-y: auto;
+            max-height: 560px;
+        }
+
+        .file-list .folder-title {
+            font-weight: 900;
+            color: #a04000;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.6rem;
+            background: #fdebd0;
+            border-radius: 12px;
+        }
+
+        .file-list .folder-title i {
+            color: #f1c40f;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.7rem 0.9rem;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 0.3rem;
+            border: 2px solid transparent;
+        }
+
+        .file-item:hover {
+            background: #fdebd0;
+            border-color: #f5b041;
+        }
+
+        .file-item.active {
+            background: #f5b041;
+            border-color: #e67e22;
+        }
+
+        .file-item.active .file-name {
+            color: #fff;
+        }
+
+        .file-item.active .file-icon {
+            color: #fff;
+        }
+
+        .file-item.active .file-name small {
+            color: #fff8f0;
+        }
+
+        .file-icon {
+            font-size: 1.4rem;
+            width: 30px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .file-icon.drive {
+            color: #f1c40f;
+        }
+        .file-icon.pdf {
+            color: #e74c3c;
+        }
+        .file-icon.excel {
+            color: #27ae60;
+        }
+        .file-icon.word {
+            color: #2980b9;
+        }
+        .file-icon.ppt {
+            color: #e67e22;
+        }
+
+        .file-name {
+            font-size: 0.85rem;
+            color: #2c3e50;
+            font-weight: 600;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+
+        .file-name small {
+            display: block;
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: #8a6d5c;
+            margin-top: 2px;
+        }
+
+        /* Visor */
+        .file-viewer {
+            background: #fff8f0;
+            border-radius: 24px;
+            border: 3px solid #f5b041;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .viewer-toolbar {
+            padding: 0.8rem 1.2rem;
+            background: #fdebd0;
+            border-bottom: 2px solid #f5b041;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .viewer-toolbar .current-file {
+            font-weight: 700;
+            color: #a04000;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .viewer-toolbar .current-file i {
+            color: #e67e22;
+        }
+
+        .viewer-toolbar .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .viewer-toolbar .actions a {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 0.35rem 1rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .viewer-toolbar .actions a:hover {
+            background: #d35400;
+            transform: scale(1.05);
+        }
+
+        .viewer-frame {
+            flex: 1;
+            min-height: 460px;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .viewer-frame iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 460px;
+            border: none;
+            display: block;
+        }
+
+        .viewer-frame .placeholder {
+            text-align: center;
+            padding: 2rem;
+            color: #8a6d5c;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            min-height: 460px;
+        }
+
+        .viewer-frame .placeholder i {
+            font-size: 4rem;
+            color: #f5b041;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .viewer-frame .placeholder h3 {
+            font-size: 1.3rem;
+            color: #a04000;
+            margin-bottom: 0.4rem;
+        }
+
+        .viewer-frame .placeholder p {
+            font-size: 0.95rem;
+            max-width: 400px;
+        }
+
+        /* Aviso Drive */
+        .drive-notice {
+            background: #eaf2f8;
+            border: 3px dashed #3498db;
+            border-radius: 20px;
+            padding: 0.8rem 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .drive-notice i {
+            font-size: 1.8rem;
+            color: #f1c40f;
+        }
+
+        .drive-notice p {
+            font-size: 0.9rem;
+            color: #1a5276;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .drive-notice p strong {
+            color: #c0392b;
+        }
+
+        /* ===== CALENDARIO ===== */
+        .calendar-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 1.5rem;
+        }
+
+        .calendar-main {
+            background: #fff8f0;
+            border-radius: 24px;
+            border: 3px solid #f5b041;
+            padding: 1.5rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .calendar-header .month-year {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #a04000;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .calendar-header .month-year i {
+            color: #f1c40f;
+        }
+
+        .calendar-header .nav-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .calendar-header .nav-buttons button {
+            background: #e67e22;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-header .nav-buttons button:hover {
+            background: #d35400;
+            transform: scale(1.1);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.4rem;
+        }
+
+        .calendar-grid .day-name {
+            text-align: center;
+            font-weight: 900;
+            color: #a04000;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+            background: #fdebd0;
+            border-radius: 10px;
+        }
+
+        .calendar-grid .day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            background: #fff;
+            border: 2px solid transparent;
+        }
+
+        .calendar-grid .day:hover {
+            background: #fdebd0;
+            border-color: #f5b041;
+            transform: scale(1.05);
+        }
+
+        .calendar-grid .day.empty {
+            background: transparent;
+            cursor: default;
+        }
+
+        .calendar-grid .day.empty:hover {
+            background: transparent;
+            border-color: transparent;
+            transform: none;
+        }
+
+        .calendar-grid .day.today {
+            background: #f1c40f;
+            color: #a04000;
+            font-weight: 900;
+            border-color: #e67e22;
+        }
+
+        .calendar-grid .day.selected {
+            background: #e67e22;
+            color: white;
+            border-color: #a04000;
+        }
+
+        .calendar-grid .day.has-event {
+            position: relative;
+        }
+
+        .calendar-grid .day.has-event::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #e74c3c;
+        }
+
+        /* Panel de eventos */
+        .events-panel {
+            background: #fff8f0;
+            border-radius: 24px;
+            border: 3px solid #f5b041;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .events-panel h3 {
+            font-size: 1.1rem;
+            color: #a04000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .events-panel h3 i {
+            color: #f1c40f;
+        }
+
+        .events-panel .selected-date {
+            font-size: 0.9rem;
+            color: #8a6d5c;
+            background: #fdebd0;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .events-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            overflow-y: auto;
+            max-height: 280px;
+        }
+
+        .event-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 0.8rem 1rem;
+            border-left: 6px solid #e67e22;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: 0.2s;
+        }
+
+        .event-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .event-item .event-time {
+            font-size: 0.75rem;
+            color: #e67e22;
+            font-weight: 700;
+        }
+
+        .event-item .event-title {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .add-event-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            border-top: 2px dashed #f5b041;
+            padding-top: 1rem;
+        }
+
+        .add-event-form input {
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            border: 2px solid #f5b041;
+            font-family: inherit;
+            font-size: 0.85rem;
+            color: #2c3e50;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .add-event-form input:focus {
+            border-color: #e67e22;
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.15);
+        }
+
+        .add-event-form button {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: 0.2s;
+        }
+
+        .add-event-form button:hover {
+            background: #d35400;
+            transform: scale(1.03);
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 1rem 2.5rem;
+            background: #f8f4ec;
+            border-top: 3px solid #fbd24d;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer .integrantes {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer .integrantes span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+            background: #fff;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border: 2px solid #f5b041;
+        }
+
+        .footer .integrantes span i {
+            color: #e67e22;
+        }
+
+        .footer .copy {
+            color: #8a6d5c;
+            font-size: 0.9rem;
+            background: #fff;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 2px solid #f5b041;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 950px) {
+            .file-explorer {
+                grid-template-columns: 1fr;
+            }
+            .file-list {
+                max-height: 220px;
+            }
+            .calendar-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 750px) {
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .footer {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <div class="header">
+            <h1><i class="fas fa-times"></i> MULTIPLICACIÓN</h1>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="propiedades.html"><i class="fas fa-cogs"></i> Propiedades</a>
+                <a href="resolucion.html"><i class="fas fa-puzzle-piece"></i> Resolución</a>
+                <a href="casos.html"><i class="fas fa-star"></i> Casos</a>
+                <a href="recursos.html" class="active"><i class="fas fa-folder-open"></i> Recursos</a>
+            </div>
+        </div>
+
+        <!-- CONTENIDO -->
+        <div class="content">
+            <h2><i class="fas fa-folder-open"></i> Recursos y Calendario</h2>
+            <div class="subtitle">
+                <i class="fas fa-lightbulb" style="color:#f1c40f;"></i> Documentos alojados en Google Drive
+            </div>
+
+            <!-- TABS -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="documentos">
+                    <i class="fas fa-file-alt"></i> Documentos
+                </button>
+                <button class="tab-btn" data-tab="calendario">
+                    <i class="fas fa-calendar-alt"></i> Calendario
+                </button>
+            </div>
+
+            <!-- ===== TAB 1: DOCUMENTOS ===== -->
+            <div id="tab-documentos" class="tab-content active">
+
+                <div class="file-explorer">
+                    <!-- Lista de archivos -->
+                    <div class="file-list">
+                        <div class="folder-title">
+                            <i class="fab fa-google-drive"></i> Mi unidad / Multiplicación
+                        </div>
+
+                        <!-- Documento PDF real -->
+                        <div class="file-item active"
+                             data-drive-id="1o1ZAhsIOBEq5tLPc9QkEEI6XvtW8NJ2o"
+                             data-type="pdf"
+                             data-name="guia-metodologica.pdf">
+                            <span class="file-icon pdf"><i class="fas fa-file-pdf"></i></span>
+                            <span class="file-name">
+                                Guía Metodológica
+                                <small>Google Drive · PDF</small>
+                            </span>
+                        </div>
+
+                        <!-- Los siguientes son ejemplos. Reemplaza los ID con los tuyos -->
+                        <div class="file-item"
+                             data-drive-id="1BcDeFgHiJkLmNoPqRsTuVwXyZ23456"
+                             data-type="pdf"
+                             data-name="pdc.pdf">
+                            <span class="file-icon pdf"><i class="fas fa-file-pdf"></i></span>
+                            <span class="file-name">
+                                PDC
+                                <small>Google Drive · PDF</small>
+                            </span>
+                        </div>
+
+                        <div class="file-item"
+                             data-drive-id="1CdEfGhIjKlMnOpQrStUvWxYz34567"
+                             data-type="pdf"
+                             data-name="informe.pdf">
+                            <span class="file-icon pdf"><i class="fas fa-file-pdf"></i></span>
+                            <span class="file-name">
+                                Informe
+                                <small>Google Drive · PDF</small>
+                            </span>
+                        </div>
+
+                        <div class="file-item"
+                             data-drive-id="1qI3gWvn65kNwbFpLM1OCOFDe4GDihqKJ"
+                             data-type="excel"
+                             data-name="registro-pedagogico.xlsx">
+                            <span class="file-icon excel"><i class="fas fa-file-excel"></i></span>
+                            <span class="file-name">
+                                Registro Pedagógico
+                                <small>Google Drive · Excel</small>
+                            </span>
+                        </div>
+
+
+                        <div class="file-item"
+                             data-drive-id="1GhIjKlMnOpQrStUvWxYz78901"
+                             data-type="ppt"
+                             data-name="presentacion.pptx">
+                            <span class="file-icon ppt"><i class="fas fa-file-powerpoint"></i></span>
+                            <span class="file-name">
+                                Presentación
+                                <small>Google Drive · PowerPoint</small>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Visor -->
+                    <div class="file-viewer">
+                        <div class="viewer-toolbar">
+                            <div class="current-file" id="currentFileName">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Documento de Multiplicación</span>
+                            </div>
+                            <div class="actions">
+                                <a id="openDriveBtn" href="#" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Abrir en Drive
+                                </a>
+                                <a id="downloadBtn" href="#" target="_blank">
+                                    <i class="fas fa-download"></i> Descargar
+                                </a>
+                            </div>
+                        </div>
+                        <div class="viewer-frame" id="viewerFrame">
+                            <!-- El iframe de Google Drive se carga aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== TAB 2: CALENDARIO ===== -->
+            <div id="tab-calendario" class="tab-content">
+                <div class="calendar-wrapper">
+                    <div class="calendar-main">
+                        <div class="calendar-header">
+                            <div class="month-year">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span id="monthYear">Enero 2025</span>
+                            </div>
+                            <div class="nav-buttons">
+                                <button onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="goToday()"><i class="fas fa-dot-circle"></i></button>
+                                <button onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
+
+                    <div class="events-panel">
+                        <h3><i class="fas fa-list"></i> Eventos</h3>
+                        <div class="selected-date" id="selectedDate">Selecciona un día</div>
+                        <div class="events-list" id="eventsList">
+                            <p style="color:#8a6d5c; font-size:0.85rem; text-align:center; padding:1rem;">
+                                No hay eventos para este día.
+                            </p>
+                        </div>
+                        <div class="add-event-form">
+                            <input type="text" id="eventTitle" placeholder="Título del evento" maxlength="40">
+                            <input type="time" id="eventTime">
+                            <button onclick="addEvent()"><i class="fas fa-plus"></i> Agregar evento</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="integrantes">
+                <span><i class="fas fa-user-astronaut"></i> César Joel Contreras Jerez</span>
+                <span><i class="fas fa-user-ninja"></i> Liz Pamela Maraz Romero</span>
+                <span><i class="fas fa-user-graduate"></i> Brayan Nicolás Ribera Flores</span>
+                <span><i class="fas fa-user-tie"></i> Juan Manuel Choque Nolasco</span>
+            </div>
+            <div class="copy">
+                <i class="fas fa-times"></i> 4 integrantes
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ============================================================
+           TABS
+           ============================================================ */
+        const tabs = document.querySelectorAll('.tab-btn');
+        const tabContents = {
+            documentos: document.getElementById('tab-documentos'),
+            calendario: document.getElementById('tab-calendario')
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                Object.values(tabContents).forEach(c => c.classList.remove('active'));
+                const target = this.dataset.tab;
+                if (target === 'documentos') tabContents.documentos.classList.add('active');
+                else if (target === 'calendario') tabContents.calendario.classList.add('active');
+            });
+        });
+
+        /* ============================================================
+           VISOR DE DOCUMENTOS DE GOOGLE DRIVE
+           ============================================================ */
+        const fileItems = document.querySelectorAll('.file-item');
+        const viewerFrame = document.getElementById('viewerFrame');
+        const currentFileName = document.getElementById('currentFileName');
+        const openDriveBtn = document.getElementById('openDriveBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // ID del documento real que proporcionaste
+        const DEFAULT_DRIVE_ID = '1o1ZAhsIOBEq5tLPc9QkEEI6XvtW8NJ2o';
+
+        let currentDriveId = DEFAULT_DRIVE_ID;
+        let currentType = 'pdf';
+
+        function getPreviewUrl(driveId) {
+            return `https://drive.google.com/file/d/${driveId}/preview`;
+        }
+
+        function getOpenUrl(driveId) {
+            return `https://drive.google.com/file/d/${driveId}/view`;
+        }
+
+        function getDownloadUrl(driveId) {
+            return `https://drive.google.com/uc?export=download&id=${driveId}`;
+        }
+
+        fileItems.forEach(item => {
+            item.addEventListener('click', function() {
+                fileItems.forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+
+                const driveId = this.dataset.driveId;
+                const type = this.dataset.type;
+                const name = this.dataset.name;
+
+                currentDriveId = driveId;
+                currentType = type;
+
+                const iconMap = {
+                    pdf: 'fa-file-pdf',
+                    excel: 'fa-file-excel',
+                    word: 'fa-file-word',
+                    ppt: 'fa-file-powerpoint'
+                };
+                const colorMap = {
+                    pdf: '#e74c3c',
+                    excel: '#27ae60',
+                    word: '#2980b9',
+                    ppt: '#e67e22'
+                };
+
+                currentFileName.innerHTML =
+                    `<i class="fas ${iconMap[type]}" style="color:${colorMap[type]};"></i> <span>${name}</span>`;
+
+                openDriveBtn.href = getOpenUrl(driveId);
+                downloadBtn.href = getDownloadUrl(driveId);
+
+                loadDrivePreview(driveId, type, name);
+            });
+        });
+
+        function loadDrivePreview(driveId, type, name) {
+            viewerFrame.innerHTML = '';
+
+            // Mostrar spinner de carga
+            viewerFrame.innerHTML = `
+                <div class="placeholder">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <h3>Cargando documento…</h3>
+                    <p>Conectando con Google Drive</p>
+                </div>
+            `;
+
+            setTimeout(() => {
+                viewerFrame.innerHTML = '';
+                const iframe = document.createElement('iframe');
+                iframe.src = getPreviewUrl(driveId);
+                iframe.allow = 'autoplay';
+                iframe.setAttribute('allowfullscreen', 'true');
+                viewerFrame.appendChild(iframe);
+            }, 500);
+        }
+
+        // Cargar el documento al inicio
+        loadDrivePreview(DEFAULT_DRIVE_ID, 'pdf', 'Documento de Multiplicación');
+        openDriveBtn.href = getOpenUrl(DEFAULT_DRIVE_ID);
+        downloadBtn.href = getDownloadUrl(DEFAULT_DRIVE_ID);
+
+        /* ============================================================
+           CALENDARIO
+           ============================================================ */
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+        let selectedDay = currentDate.getDate();
+        let selectedMonth = currentMonth;
+        let selectedYear = currentYear;
+
+        let events = {};
+
+        const monthNames = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+
+            const dayNames = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+            dayNames.forEach(d => {
+                const el = document.createElement('div');
+                el.className = 'day-name';
+                el.textContent = d;
+                grid.appendChild(el);
+            });
+
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const startOffset = (firstDay === 0) ? 6 : firstDay - 1;
+
+            for (let i = 0; i < startOffset; i++) {
+                const el = document.createElement('div');
+                el.className = 'day empty';
+                grid.appendChild(el);
+            }
+
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            for (let d = 1; d <= daysInMonth; d++) {
+                const el = document.createElement('div');
+                el.className = 'day';
+                el.textContent = d;
+
+                const today = new Date();
+                if (d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+                    el.classList.add('today');
+                }
+
+                if (d === selectedDay && currentMonth === selectedMonth && currentYear === selectedYear) {
+                    el.classList.add('selected');
+                }
+
+                const key = `${currentYear}-${currentMonth + 1}-${d}`;
+                if (events[key] && events[key].length > 0) {
+                    el.classList.add('has-event');
+                }
+
+                el.addEventListener('click', () => {
+                    selectedDay = d;
+                    selectedMonth = currentMonth;
+                    selectedYear = currentYear;
+                    renderCalendar();
+                    renderEvents();
+                });
+
+                grid.appendChild(el);
+            }
+
+            document.getElementById('monthYear').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+        }
+
+        function renderEvents() {
+            const list = document.getElementById('eventsList');
+            const dateLabel = document.getElementById('selectedDate');
+            const key = `${selectedYear}-${selectedMonth + 1}-${selectedDay}`;
+
+            dateLabel.textContent = `${selectedDay} de ${monthNames[selectedMonth]} de ${selectedYear}`;
+
+            const dayEvents = events[key] || [];
+
+            if (dayEvents.length === 0) {
+                list.innerHTML = `<p style="color:#8a6d5c; font-size:0.85rem; text-align:center; padding:1rem;">
+                    No hay eventos para este día.
+                </p>`;
+            } else {
+                list.innerHTML = dayEvents.map(ev => `
+                    <div class="event-item">
+                        <div class="event-time">${ev.time || 'Sin hora'}</div>
+                        <div class="event-title">${ev.title}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function prevMonth() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+        }
+
+        function goToday() {
+            const today = new Date();
+            currentMonth = today.getMonth();
+            currentYear = today.getFullYear();
+            selectedDay = today.getDate();
+            selectedMonth = currentMonth;
+            selectedYear = currentYear;
+            renderCalendar();
+            renderEvents();
+        }
+
+        function addEvent() {
+            const title = document.getElementById('eventTitle').value.trim();
+            const time = document.getElementById('eventTime').value;
+
+            if (!title) {
+                alert('Escribe un título para el evento.');
+                return;
+            }
+
+            const key = `${selectedYear}-${selectedMonth + 1}-${selectedDay}`;
+            if (!events[key]) events[key] = [];
+            events[key].push({ title, time });
+
+            document.getElementById('eventTitle').value = '';
+            document.getElementById('eventTime').value = '';
+
+            renderCalendar();
+            renderEvents();
+        }
+
+        renderCalendar();
+        renderEvents();
+    </script>
+</body>
+</html>
